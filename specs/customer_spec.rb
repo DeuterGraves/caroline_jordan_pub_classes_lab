@@ -23,7 +23,7 @@ class CustomerTest < MiniTest::Test
   end
 
   def test_reduce_money_in_wallet()
-    @customer1.buys_item(@drink1)
+    @customer1.decrease_wallet(@drink1)
     assert_equal(47, @customer1.wallet)
   end
 

@@ -13,5 +13,12 @@ end
     @till += price
   end
 
+def sells_item(drink, customer)
+  increase_till(drink)
+  #p customer.wallet
+  customer.decrease_wallet(drink)
+  #@wallet.decrease_wallet(drink)
+end
+
   #class end
 end

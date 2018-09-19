@@ -13,6 +13,8 @@ def setup()
 
   @drinks = [@drink1, @drink2, @drink3]
 
+  @customer1 = Customer.new("Richard", 50)
+
   @pub1 = Pub.new("Filthy McNasties", 0, @drinks)
 end
 
@@ -31,6 +33,14 @@ end
 def test_increase_till()
   @pub1.increase_till(@drink1)
   assert_equal(3, @pub1.till)
+end
+
+def test_sells_items()
+  @pub1.sells_item(@drink1, @customer1)
+  # test increase till
+  assert_equal(3, @pub1.till)
+  # test decrease wallet
+  assert_equal(47, @customer1.wallet)
 end
 
   #end class

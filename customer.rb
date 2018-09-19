@@ -7,7 +7,7 @@ class Customer
     @wallet = wallet
   end
 
-  def buys_item(drink)
+  def decrease_wallet(drink)
   #price of drink
     price = drink.price
     # p price
