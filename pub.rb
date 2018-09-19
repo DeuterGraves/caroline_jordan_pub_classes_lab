@@ -8,7 +8,10 @@ def initialize(name, till, drinks)
   @drinks = drinks
 end
 
-
+  def increase_till(drink)
+    price = drink.price
+    @till += price
+  end
 
   #class end
 end
