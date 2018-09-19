@@ -50,6 +50,21 @@ class Pub
     end
   end
 
+  def all_checks_sale(drink, customer)
+    #first check age cos that's a deal breaker
+    # then check test_drunkenness_level
+    # then sell if both == true
+    # if of age && not drunk - sell
+    # if of age && drunk - don't sell
+    # if under age && not drunk - don't sell
+    # if underage && drunk - don't sell
+    if age_check?(customer) && drunk_check?(customer)
+      sells_item(drink, customer)
+    else
+      return "computer says ABSOLUTELY not"
+    end
+  end
+
 
   #class end
 end

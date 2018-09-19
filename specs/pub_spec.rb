@@ -92,7 +92,28 @@ class PubTest < MiniTest::Test
     @customer1.drinks(@drink1)
     sale= @pub1.drunk_drink_sale(@drink1, @customer1)
     assert_equal("you're too drunk, mate", sale)
+  end
 
+  def test_check_age_then_check_drunk___pass_both()
+    @pub1.all_checks_sale(@drink1, @customer1)
+    assert_equal(3, @pub1.till)
+    assert_equal(47, @customer1.wallet)
+  end
+
+  def test_check_age_then_check_drunk___fail_age()
+    sale = @pub1.all_checks_sale(@drink1, @customer2)
+    assert_equal("computer says ABSOLUTELY not", sale)
+  end
+
+  def test_check_age_then_check_drunk___fail_drunk()
+    @customer1.drinks(@drink1)
+    @customer1.drinks(@drink1)
+    @customer1.drinks(@drink1)
+    @customer1.drinks(@drink1)
+    @customer1.drinks(@drink1)
+    @customer1.drinks(@drink1)
+    sale = @pub1.all_checks_sale(@drink1, @customer1)
+    assert_equal("computer says ABSOLUTELY not", sale)
   end
   #end class
 end
