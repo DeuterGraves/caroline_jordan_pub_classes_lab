@@ -15,9 +15,7 @@ class Pub
 
   def sells_item(drink, customer)
     increase_till(drink)
-    #p customer.wallet
     customer.decrease_wallet(drink)
-    #@wallet.decrease_wallet(drink)
   end
 
   def age_check?(customer)
@@ -26,21 +24,30 @@ class Pub
   end
 
   def drink_sale(drink, customer)
-    #if age check == true
     if age_check?(customer) == true
-    # increase_till
-    sells_item(drink, customer)
-    #decrease_wallet
-  else
-    return "computer says no"
+      sells_item(drink, customer)
+    else
+      return "computer says no"
+    end
   end
 
-# #write the function for the drunk check
-# def drunk_check(customer)
-#   #similar to age check - drinks max 5 - if 6+ = false
-#   #if 0-5 - true
-# end
+  def drunk_check?(customer)
+    drunk = customer.drunkenness
+    drunk < 5
+    #if drunk is less than 5 - customer is not drunk - true - safe to sell drink
+    # if this evaluates to false - then don't sell them a drink
+  end
 
+  def drunk_drink_sale(drink, customer)
+    #if drunk check = true
+    if drunk_check?(customer) == true
+      sells_item(drink, customer)
+    else
+      return "you're too drunk, mate"
+      #sell drink to customer
+      # if drunk check = false
+      #don't drink to customer
+    end
   end
 
 
