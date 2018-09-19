@@ -51,5 +51,18 @@ end
 def test_check_age__not_of_age()
   assert_equal(false, @pub1.age_check(@customer2))
 end
+
+def test_age_check_drink_sale__of_age()
+  @pub1.drink_sale(@drink1, @customer1)
+  assert_equal(3, @pub1.till)
+  assert_equal(47, @customer1.wallet)
+end
+
+def test_age_check_drink_sale__not_of_age()
+  sale = @pub1.drink_sale(@drink1, @customer2)
+  assert_equal("computer says no", sale)
+end
+
+
   #end class
 end

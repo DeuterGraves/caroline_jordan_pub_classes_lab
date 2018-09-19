@@ -24,5 +24,19 @@ class Pub
     age = customer.age
     age >= 18
   end
+
+  def drink_sale(drink, customer)
+    #if age check == true
+    if age_check(customer) == true
+    # increase_till
+    sells_item(drink, customer)
+    #decrease_wallet
+  else
+    return "computer says no"
+  end
+
+  end
+
+
   #class end
 end
