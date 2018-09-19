@@ -7,9 +7,9 @@ class CustomerTest < MiniTest::Test
 
   def setup()
 
-    @drink1 = Drink.new("Harvey Wallbanger", 3)
-    @drink2 = Drink.new("Orchard Pigs Cider", 2)
-    @drink3 = Drink.new("Tennants", 1)
+    @drink1 = Drink.new("Harvey Wallbanger", 3, 1)
+    @drink2 = Drink.new("Orchard Pigs Cider", 2, 1)
+    @drink3 = Drink.new("Tennants", 1, 1)
 
     @customer1 = Customer.new("Richard", 50, 24)
   end
@@ -26,10 +26,18 @@ class CustomerTest < MiniTest::Test
     assert_equal(24, @customer1.age)
   end
 
+  def test_drunkenness_level()
+    assert_equal(0, @customer1.drunkenness)
+  end
+
   def test_reduce_money_in_wallet()
     @customer1.decrease_wallet(@drink1)
     assert_equal(47, @customer1.wallet)
   end
 
+  def test_drunkenness_level_increases()
+    @customer1.drinks(@drink1)
+    assert_equal(1, @customer1.drunkenness)
+  end
 #class end
 end

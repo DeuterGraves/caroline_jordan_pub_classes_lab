@@ -7,9 +7,9 @@ require_relative("../pub.rb")
 class PubTest < MiniTest::Test
 
 def setup()
-  @drink1 = Drink.new("Harvey Wallbanger", 3)
-  @drink2 = Drink.new("Orchard Pigs Cider", 2)
-  @drink3 = Drink.new("Tennants", 1)
+  @drink1 = Drink.new("Harvey Wallbanger", 3, 1)
+  @drink2 = Drink.new("Orchard Pigs Cider", 2, 1)
+  @drink3 = Drink.new("Tennants", 1, 1)
 
   @drinks = [@drink1, @drink2, @drink3]
 
@@ -45,11 +45,11 @@ def test_sells_items()
 end
 
 def test_check_age__of_age()
-  assert_equal(true, @pub1.age_check(@customer1))
+  assert_equal(true, @pub1.age_check?(@customer1))
 end
 
 def test_check_age__not_of_age()
-  assert_equal(false, @pub1.age_check(@customer2))
+  assert_equal(false, @pub1.age_check?(@customer2))
 end
 
 def test_age_check_drink_sale__of_age()
@@ -63,6 +63,13 @@ def test_age_check_drink_sale__not_of_age()
   assert_equal("computer says no", sale)
 end
 
+# def test_drunk_check_sale__not_drunk()
+#   assert_equal(true, @pub1.drunk_check(@customer1))
+# end
+
+# def test_drunk_check_sale__drunk()
+#   assert_equal(false, @pub1.drunk_check(@customer1))
+# end
 
   #end class
 end
