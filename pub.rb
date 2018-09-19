@@ -13,9 +13,9 @@ class Pub
     @till += price
   end
 
-  def sells_item(drink, customer)
-    increase_till(drink)
-    customer.decrease_wallet(drink)
+  def sells_item(item, customer)
+    increase_till(item)
+    customer.decrease_wallet(item)
   end
 
   def age_check?(customer)
@@ -29,6 +29,12 @@ class Pub
     else
       return "computer says no"
     end
+  end
+
+  def food_sale(food, customer)
+    increase_till(food)
+    customer.decrease_wallet(food)
+    customer.eats(food)
   end
 
   def drunk_check?(customer)

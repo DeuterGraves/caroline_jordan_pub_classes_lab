@@ -3,6 +3,7 @@ require("minitest/rg")
 require_relative("../drink.rb")
 require_relative("../customer.rb")
 require_relative("../pub.rb")
+require_relative("../food.rb")
 
 class PubTest < MiniTest::Test
 
@@ -12,6 +13,9 @@ class PubTest < MiniTest::Test
     @drink3 = Drink.new("Tennants", 1, 1)
 
     @drinks = [@drink1, @drink2, @drink3]
+
+    @food1 = Food.new("chips", 2.5, 0.5)
+    @food2 = Food.new("burger", 7, 1)
 
     @customer1 = Customer.new("Richard", 50, 24)
     @customer2 = Customer.new("Susan", 50, 17)
@@ -115,5 +119,31 @@ class PubTest < MiniTest::Test
     sale = @pub1.all_checks_sale(@drink1, @customer1)
     assert_equal("computer says ABSOLUTELY not", sale)
   end
+
+  def test_food_sale_till_increase()
+    @customer1.drinks(@drink1)
+    @customer1.drinks(@drink1)
+    sale = @pub1.food_sale(@food1, @customer1)
+    assert_equal(2.5, @pub1.till)
+  end
+
+  def test_food_sale_wallet_decrease()
+    @customer1.drinks(@drink1)
+    @customer1.drinks(@drink1)
+    sale = @pub1.food_sale(@food1, @customer1)
+    assert_equal(47.5, @customer1.wallet)
+  end
+
+  def test_food_sale_sobering_increase()
+    @customer1.drinks(@drink1)
+    @customer1.drinks(@drink1)
+    sale = @pub1.food_sale(@food1, @customer1)
+    assert_equal(1.5, @customer1.drunkenness)
+
+  end
+
+
+
+
   #end class
 end

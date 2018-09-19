@@ -26,5 +26,12 @@ class Customer
     #increase drunkenness by drink_value
     return @drunkenness += drink_value
   end
+
+  def eats(food)
+    sober_factor = food.sobering
+    return @drunkenness -= sober_factor
+  end
+
+
   #class end
 end
