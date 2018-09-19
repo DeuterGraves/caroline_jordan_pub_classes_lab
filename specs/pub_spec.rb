@@ -8,6 +8,9 @@ require_relative("../food.rb")
 class PubTest < MiniTest::Test
 
   def setup()
+    # to set up the stock, why not add an inventory value to the Drink class - a sale could increment it up and down, then to get the value you would multiply the price by how many are in the inventory value and run through the drinks array adding those values together?
+    #
+    #couldn't the drinks array in the pub object - [#<Drink:0x007fb7d496f058 @name="Harvey Wallbanger", @price=3, @abv=1>, #<Drink:0x007fb7d496ef90 @name="Orchard Pigs Cider", @price=2, @abv=1>, #<Drink:0x007fb7d496ef40 @name="Tennants", @price=1, @abv=1>] be used as a hash? there are items you can call, similar to keys, with values assigned to them.
     @drink1 = Drink.new("Harvey Wallbanger", 3, 1)
     @drink2 = Drink.new("Orchard Pigs Cider", 2, 1)
     @drink3 = Drink.new("Tennants", 1, 1)
@@ -139,6 +142,7 @@ class PubTest < MiniTest::Test
     @customer1.drinks(@drink1)
     sale = @pub1.food_sale(@food1, @customer1)
     assert_equal(1.5, @customer1.drunkenness)
+    p @pub1
 
   end
 
