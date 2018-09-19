@@ -13,7 +13,8 @@ def setup()
 
   @drinks = [@drink1, @drink2, @drink3]
 
-  @customer1 = Customer.new("Richard", 50)
+  @customer1 = Customer.new("Richard", 50, 24)
+  @customer2 = Customer.new("Susan", 50, 17)
 
   @pub1 = Pub.new("Filthy McNasties", 0, @drinks)
 end
@@ -43,5 +44,12 @@ def test_sells_items()
   assert_equal(47, @customer1.wallet)
 end
 
+def test_check_age__of_age()
+  assert_equal(true, @pub1.age_check(@customer1))
+end
+
+def test_check_age__not_of_age()
+  assert_equal(false, @pub1.age_check(@customer2))
+end
   #end class
 end
