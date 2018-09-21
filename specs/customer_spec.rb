@@ -8,9 +8,9 @@ class CustomerTest < MiniTest::Test
 
   def setup()
 
-    @drink1 = Drink.new("Harvey Wallbanger", 3, 1)
-    @drink2 = Drink.new("Orchard Pigs Cider", 2, 1)
-    @drink3 = Drink.new("Tennants", 1, 1)
+    @drink1 = Drink.new("Harvey Wallbanger", 3, 1, 5)
+    @drink2 = Drink.new("Orchard Pigs Cider", 2, 1, 10)
+    @drink3 = Drink.new("Tennants", 1, 1, 20)
 
     @food1 = Food.new("chips", 2.5, 0.5)
     @food2 = Food.new("burger", 7, 1)

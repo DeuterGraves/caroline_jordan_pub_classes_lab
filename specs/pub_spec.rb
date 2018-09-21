@@ -1,5 +1,6 @@
 require("minitest/autorun")
 require("minitest/rg")
+require("pry")
 require_relative("../drink.rb")
 require_relative("../customer.rb")
 require_relative("../pub.rb")
@@ -11,9 +12,9 @@ class PubTest < MiniTest::Test
     # to set up the stock, why not add an inventory value to the Drink class - a sale could increment it up and down, then to get the value you would multiply the price by how many are in the inventory value and run through the drinks array adding those values together?
     #
     #couldn't the drinks array in the pub object - [#<Drink:0x007fb7d496f058 @name="Harvey Wallbanger", @price=3, @abv=1>, #<Drink:0x007fb7d496ef90 @name="Orchard Pigs Cider", @price=2, @abv=1>, #<Drink:0x007fb7d496ef40 @name="Tennants", @price=1, @abv=1>] be used as a hash? there are items you can call, similar to keys, with values assigned to them.
-    @drink1 = Drink.new("Harvey Wallbanger", 3, 1)
-    @drink2 = Drink.new("Orchard Pigs Cider", 2, 1)
-    @drink3 = Drink.new("Tennants", 1, 1)
+    @drink1 = Drink.new("Harvey Wallbanger", 3, 1, 5)
+    @drink2 = Drink.new("Orchard Pigs Cider", 2, 1, 10)
+    @drink3 = Drink.new("Tennants", 1, 1, 20)
 
     @drinks = [@drink1, @drink2, @drink3]
 
@@ -63,6 +64,8 @@ class PubTest < MiniTest::Test
     @pub1.drink_sale(@drink1, @customer1)
     assert_equal(3, @pub1.till)
     assert_equal(47, @customer1.wallet)
+    assert_equal(4, @drink1.stock)
+    assert_equal(10, @drink2.stock)
   end
 
   def test_age_check_drink_sale__not_of_age()
@@ -131,10 +134,13 @@ class PubTest < MiniTest::Test
   end
 
   def test_food_sale_wallet_decrease()
-    @customer1.drinks(@drink1)
-    @customer1.drinks(@drink1)
+    #@customer1.drinks(@drink1)
+    #@customer1.drinks(@drink1)
+
     sale = @pub1.food_sale(@food1, @customer1)
     assert_equal(47.5, @customer1.wallet)
+    #pauses the test - better than printing in the test - this is called a break point for step through debugging
+    #binding.pry
   end
 
   def test_food_sale_sobering_increase()
@@ -142,11 +148,12 @@ class PubTest < MiniTest::Test
     @customer1.drinks(@drink1)
     sale = @pub1.food_sale(@food1, @customer1)
     assert_equal(1.5, @customer1.drunkenness)
-    p @pub1
-
   end
 
-
+  def test_pub_stock_value()
+    value = @pub1.pub_stock_value()
+    assert_equal(55, value)
+  end
 
 
   #end class

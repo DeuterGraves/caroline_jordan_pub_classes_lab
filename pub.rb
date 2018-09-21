@@ -26,6 +26,7 @@ class Pub
   def drink_sale(drink, customer)
     if age_check?(customer) == true
       sells_item(drink, customer)
+      drink.decrease_drinks()
     else
       return "computer says no"
     end
@@ -71,6 +72,11 @@ class Pub
     end
   end
 
+  def pub_stock_value()
+    #for each drink within drinks, run drink_stock_value and add up the result
+    drink_values = @drinks.map {|drink| drink.drink_stock_value}
+    drink_values.reduce {|sum, drink| sum + drink}
+  end
 
   #class end
 end
